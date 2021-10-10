@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">NPL Poker</string>
+    <string name="poweredby">Powered by</string>
+    <string name="title">Poker Games</string>
+    <string name="letsplay">Let\'s play</string>
+    <string name="begin">Start here</string>
 </resources>

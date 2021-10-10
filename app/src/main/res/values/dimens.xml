@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="bottom_padding_powered_by_text">12dp</dimen>
+    <dimen name="card_width">60dp</dimen>
+    <dimen name="card_divider">15dp</dimen>
+    <dimen name="card_divider_height">35dp</dimen>
+    <dimen name="card_height">130dp</dimen>
+    <dimen name="button_radius">4dp</dimen>
+</resources>
