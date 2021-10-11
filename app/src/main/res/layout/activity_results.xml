@@ -5,5 +5,76 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ResultsActivity">
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/viewLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:indeterminate="true"
+            style="@style/Widget.MaterialComponents.CircularProgressIndicator"
+            app:trackColor="@color/primary_light"
+            app:indicatorColor="@color/primary_dark"
+            app:indicatorSize="70dp"
+            app:indeterminateAnimationType="contiguous" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_margin="@dimen/textview_padding"
+            android:text="@string/checkingcombination"
+            android:textAppearance="?android:textAppearanceMedium" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/viewResults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_margin="@dimen/textview_padding"
+            android:fontFamily="@font/lyons_serif_bold"
+            android:text="@string/winners"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvWinners"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_margin="@dimen/textview_padding"
+            android:text="@string/winners"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Button"
+            app:cornerRadius="@dimen/button_radius"
+            android:onClick="returnToCardSelection"
+            android:text="@string/tryagain" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

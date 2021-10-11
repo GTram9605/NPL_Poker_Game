@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -23,6 +24,9 @@ import za.ac.nplinnovations.nplpoker.pojos.Card;
 
 public class CardSelectionActivity extends AppCompatActivity {
     private final String TAG = CardSelectionActivity.class.getSimpleName();
+    public static final String DECK_OF_CARDS = "cardDeck";
+    public static final String CARD_LIST = "cardList";
+
     private List<Card> mCards;
     private MaterialAutoCompleteTextView atcCardOne, atcCardTwo, atcCardThree, atcCardFour, atcCardFive;
     private AppCompatImageView ivCardOne, ivCardTwo, ivCardThree, ivCardFour, ivCardFive;
@@ -274,5 +278,9 @@ public class CardSelectionActivity extends AppCompatActivity {
     public void checkcards(View view) {
         Toast.makeText(view.getContext(), "Cards to submit\n" + c1 + ", " + c2 + ", " + c3 + ", " + c4 + ", " + c5
                 , Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(view.getContext(), ResultsActivity.class);
+        intent.putExtra(DECK_OF_CARDS, c1 + ", " + c2 + ", " + c3 + ", " + c4 + ", " + c5);
+        intent.putExtra(CARD_LIST, (Serializable) mCards);
+        startActivity(intent);
     }
 }

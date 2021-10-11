@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             cards.add(new Card("AH", "Ace of hearts", R.drawable.ace_of_hearts));
             cards.add(new Card("AD", "Ace of diamonds", R.drawable.ace_of_diamonds));
 
-            cards.add(new Card("J", "Joker", R.drawable.joker));
+            //cards.add(new Card("J", "Joker", R.drawable.joker));
 
             cards.add(new Card("JC", "Jack of clubs", R.drawable.jack_of_clubs));
             cards.add(new Card("JH", "Jack of hearts", R.drawable.jack_of_hearts));
@@ -137,13 +137,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(ArrayList<Card> cards) {
-            super.onPostExecute(cards);
+            //Super.onPostExecute(cards);
             Intent intent = new Intent(mContext.get(), CardSelectionActivity.class);
             intent.putExtra(PASSED_DATA, (Serializable) cards);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.get().startActivity(intent);
             mProgressIndicator.setVisibility(View.GONE);
             mButton.setVisibility(View.VISIBLE);
+            finish();
         }
 
     }

@@ -1,7 +1,7 @@
 package za.ac.nplinnovations.nplpoker.connection;
 
 public class Connection {
-    private static String ADDRESS = "api.pokerapi.dev/v1/winner/texas_holdem";
+    private static String ADDRESS = "api.pokerapi.dev/v1/winner/";
     private final static String PROTOCOL = "https://";
 
     public static String getUrl() {

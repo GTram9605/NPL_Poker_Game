@@ -13,4 +13,7 @@
     <string name="cardnum_five">Card No.5</string>
     <string name="invalid_card">This card is invalid.</string>
     <string name="checkcards">Check my cards</string>
+    <string name="checkingcombination">Checking winning combinations,\n please wait</string>
+    <string name="winners">Winners</string>
+    <string name="tryagain">Try again</string>
 </resources>
