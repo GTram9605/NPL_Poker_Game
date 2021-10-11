@@ -17,6 +17,7 @@ import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import za.ac.nplinnovations.nplpoker.pojos.Card;
 
@@ -26,6 +27,7 @@ public class CardSelectionActivity extends AppCompatActivity {
     private MaterialAutoCompleteTextView atcCardOne, atcCardTwo, atcCardThree, atcCardFour, atcCardFive;
     private AppCompatImageView ivCardOne, ivCardTwo, ivCardThree, ivCardFour, ivCardFive;
     private String c1, c2, c3, c4, c5;
+    private Toast mToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,9 @@ public class CardSelectionActivity extends AppCompatActivity {
         ivCardFour = (AppCompatImageView) findViewById(R.id.ivCardFour);
         ivCardFive = (AppCompatImageView) findViewById(R.id.ivCardFive);
 
+        //Initialise toast
+        mToast = Toast.makeText(this, "Card already revealed.", Toast.LENGTH_SHORT);
+
         Intent previousIntent = getIntent();
         if (previousIntent != null){
             mCards = (List<Card>) previousIntent.getSerializableExtra(MainActivity.PASSED_DATA);
@@ -54,8 +59,96 @@ public class CardSelectionActivity extends AppCompatActivity {
             }
 
             setupAutoCompleteListeners(clues);
-
+            setupCardOnClickListeners();
         }
+    }
+
+    private void setupCardOnClickListeners() {
+        Random r = new Random();
+        ivCardOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mToast.cancel();
+                if (c1 == null){
+                    Card card = mCards.get(r.nextInt(mCards.size()));
+                    ivCardOne.setImageDrawable(getResources().getDrawable(card.getImage(), null));
+                    atcCardOne.setText(card.getName());
+                    atcCardOne.setEnabled(false);
+                    c1 = card.getCode();
+                    checkDeckIfComplete();
+                }else{
+                    mToast.show();
+                }
+            }
+        });
+
+        ivCardTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mToast.cancel();
+                if (c2 == null){
+                    Card card = mCards.get(r.nextInt(mCards.size()));
+                    ivCardTwo.setImageDrawable(getResources().getDrawable(card.getImage(), null));
+                    atcCardTwo.setText(card.getName());
+                    atcCardTwo.setEnabled(false);
+                    c2 = card.getCode();
+                    checkDeckIfComplete();
+                }else{
+                    mToast.show();
+                }
+            }
+        });
+
+        ivCardThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mToast.cancel();
+                if (c3 == null){
+                    Card card = mCards.get(r.nextInt(mCards.size()));
+                    ivCardThree.setImageDrawable(getResources().getDrawable(card.getImage(), null));
+                    atcCardThree.setText(card.getName());
+                    atcCardThree.setEnabled(false);
+                    c3 = card.getCode();
+                    checkDeckIfComplete();
+                }else{
+                    mToast.show();
+                }
+            }
+        });
+
+        ivCardFour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mToast.cancel();
+                if (c4 == null){
+                    Card card = mCards.get(r.nextInt(mCards.size()));
+                    ivCardFour.setImageDrawable(getResources().getDrawable(card.getImage(), null));
+                    atcCardFour.setText(card.getName());
+                    atcCardFour.setEnabled(false);
+                    c4 = card.getCode();
+                    checkDeckIfComplete();
+                }else{
+                    mToast.show();
+                }
+            }
+        });
+
+        ivCardFive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mToast.cancel();
+                if (c5 == null){
+                    Card card = mCards.get(r.nextInt(mCards.size()));
+                    ivCardFive.setImageDrawable(getResources().getDrawable(card.getImage(), null));
+                    atcCardFive.setText(card.getName());
+                    atcCardFive.setEnabled(false);
+                    c5 = card.getCode();
+                    checkDeckIfComplete();
+                }else{
+                    mToast.show();
+                }
+            }
+        });
     }
 
     private void setupAutoCompleteListeners(List<String> clues) {
@@ -175,6 +268,7 @@ public class CardSelectionActivity extends AppCompatActivity {
 
         return null;
     }
+
 
 
     public void checkcards(View view) {

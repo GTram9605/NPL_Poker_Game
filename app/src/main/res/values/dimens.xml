@@ -5,6 +5,9 @@
     <dimen name="card_divider">15dp</dimen>
     <dimen name="card_divider_height">35dp</dimen>
     <dimen name="card_height">130dp</dimen>
+
+    <dimen name="card_deck_height">110dp</dimen>
     <dimen name="button_radius">4dp</dimen>
     <dimen name="textview_padding">8dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
