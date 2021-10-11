@@ -4,4 +4,13 @@
     <string name="title">Poker Games</string>
     <string name="letsplay">Let\'s play</string>
     <string name="begin">Start here</string>
+    <string name="card">Your deck of cards</string>
+    <string name="enteryourcardvalues">Enter your card values or click cards above to generate random</string>
+    <string name="cardnum_one">Card No.1</string>
+    <string name="cardnum_two">Card No.2</string>
+    <string name="cardnum_three">Card No.3</string>
+    <string name="cardnum_four">Card No.4</string>
+    <string name="cardnum_five">Card No.5</string>
+    <string name="invalid_card">This card is invalid.</string>
+    <string name="checkcards">Check my cards</string>
 </resources>

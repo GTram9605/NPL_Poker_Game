@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NPLPoker">
         <activity
+            android:name=".CardSelectionActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.Splash"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

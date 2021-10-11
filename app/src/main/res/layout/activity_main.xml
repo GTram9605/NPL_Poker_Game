@@ -54,11 +54,25 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBegin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.Button"
             app:cornerRadius="@dimen/button_radius"
+            android:onClick="startPlaying"
             android:text="@string/begin" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:indeterminate="true"
+            style="@style/Widget.MaterialComponents.CircularProgressIndicator"
+            app:trackColor="@color/primary_light"
+            app:indicatorColor="@color/white"
+            app:indicatorSize="50dp"
+            app:indeterminateAnimationType="contiguous" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 
