@@ -12,6 +12,8 @@ import android.view.View;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +47,9 @@ public class ResultsActivity extends AppCompatActivity {
 
     QueryService service = retrofit.create(QueryService.class);
 
+    //RequestQueue queue;
+    String url = (Connection.getUrl() + "texas_holdem?");
+
 
     private final String TAG = ResultsActivity.class.getSimpleName();
 
@@ -67,11 +72,13 @@ public class ResultsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if (intent.getStringExtra(CardSelectionActivity.DECK_OF_CARDS) != null && (List<Card>) intent.getSerializableExtra(CardSelectionActivity.CARD_LIST) != null){
+            //queue = Volley.newRequestQueue(ResultsActivity.this);
+
             decked_cards = intent.getStringExtra(CardSelectionActivity.DECK_OF_CARDS);
             available_cards = (List<Card>) intent.getSerializableExtra(CardSelectionActivity.CARD_LIST);
             generateComparisonCards(available_cards);
-            Call<MainResponse> cardsChecker = service.checkWinners(decked_cards, comparisonCards.get(0).toString(),
-                    comparisonCards.get(1).toString(), comparisonCards.get(2).toString(), comparisonCards.get(3).toString());
+            Call<MainResponse> cardsChecker = service.checkWinners(decked_cards.replaceAll(",", "\\,"), comparisonCards.get(0).toString().replaceAll(",", "\\,"),
+                    comparisonCards.get(1).toString().replaceAll(",", "\\,"), comparisonCards.get(2).toString().replaceAll(",", "\\,"), comparisonCards.get(3).toString().replaceAll(",", "\\,"));
             cardsChecker.enqueue(new Callback<MainResponse>() {
                 @Override
                 public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
@@ -79,8 +86,9 @@ public class ResultsActivity extends AppCompatActivity {
                     if(response.body() != null && response.body().getWinners().size() > 0) {
                         for (Player player : response.body().getWinners()) {
                             result += player.getResult() + ": " + player.getCards() + "\n";
-
+                            Log.d(TAG, "onResponse: " + player);
                         }
+                        Log.d(TAG, "onResponse: winners count (" + response.body().getWinners().size() + ")");
                     }else if(response.body() == null) {
                         result += "Unfortunately we could not generate any winners." ;
                         Log.d(TAG, "onResponse: " + response.errorBody());
@@ -100,6 +108,44 @@ public class ResultsActivity extends AppCompatActivity {
                     tvWinners.setText("Error: " + t.getLocalizedMessage());
                 }
             });
+
+/*            url += "cc=" + decked_cards;
+            for (PlayersCards pc: comparisonCards){
+                url += ",pc[]=" + pc.toString();
+            }
+
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    MainResponse mResponse = gson.fromJson(response.toString(), MainResponse.class);
+                    String result = "";
+                    if(mResponse != null && mResponse.getWinners().size() > 0) {
+                        for (Player player : mResponse.getWinners()) {
+                            result += player.getResult() + ": " + player.getCards() + "\n";
+
+                        }
+                    }else if(mResponse == null) {
+                        result += "Unfortunately we could not generate any winners." ;
+                        Log.d(TAG, "onResponse: " + response.toString());
+                    }else
+                        result += "Error: Could not generate any winners.\n" ;
+
+                    viewLoading.setVisibility(View.GONE);
+                    viewResults.setVisibility(View.VISIBLE);
+                    tvWinners.setText(result);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    viewLoading.setVisibility(View.GONE);
+                    viewResults.setVisibility(View.VISIBLE);
+                    tvWinners.setText("Error: " + error.getLocalizedMessage());
+                    Log.d(TAG, "onErrorResponse: " + error.getLocalizedMessage());
+                    Log.d(TAG, "url: " + url);
+                }
+            });
+
+            queue.add(jsonObjectRequest);*/
         }
 
 

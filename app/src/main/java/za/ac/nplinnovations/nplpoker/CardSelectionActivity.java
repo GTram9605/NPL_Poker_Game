@@ -276,10 +276,10 @@ public class CardSelectionActivity extends AppCompatActivity {
 
 
     public void checkcards(View view) {
-        Toast.makeText(view.getContext(), "Cards to submit\n" + c1 + ", " + c2 + ", " + c3 + ", " + c4 + ", " + c5
+        Toast.makeText(view.getContext(), "Cards to submit\n" + c1+"," + c2 + "," + c3 + "," + c4 + "," + c5
                 , Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(view.getContext(), ResultsActivity.class);
-        intent.putExtra(DECK_OF_CARDS, c1 + ", " + c2 + ", " + c3 + ", " + c4 + ", " + c5);
+        intent.putExtra(DECK_OF_CARDS, c1 + "," + c2 + "," + c3 + "," + c4 + "," + c5);
         intent.putExtra(CARD_LIST, (Serializable) mCards);
         startActivity(intent);
     }
